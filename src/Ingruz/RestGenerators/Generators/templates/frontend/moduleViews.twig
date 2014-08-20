@@ -1,0 +1,38 @@
+define (require) ->
+    App = require 'app'
+
+    Views = {}
+
+    class Views.Top extends App.Base.Views.TopControls
+        template: 'base/templates/topControls'
+
+        customTriggers:
+            'click .newItem' : 'new:{{ className }}:button:clicked'
+
+    class Views.EditLayout extends App.Base.Views.BaseLayout
+        template: '{{ className }}/templates/edit_layout'
+
+        regions:
+            titleRegion: '#title-region'
+            formRegion: '#form-region'
+
+    class Views.Title extends App.Base.Views.BaseItemView
+        template: '{{ className }}/templates/_title'
+
+    class Views.Edit extends App.Base.Views.BaseItemView
+        template: '{{ className }}/templates/edit'
+
+    class Views.Row extends App.Base.Views.RowGen
+        template: "{{ className }}/templates/_row"
+
+        triggers:
+            'click .btn' : 'edit:{{ className }}:clicked'
+
+    class Views.Grid extends App.Base.Views.TableGen
+        template: "{{ className }}/templates/grid"
+        itemView: Views.Row
+
+    class Views.Layout extends App.Base.Views.Layout
+        template: '{{ className }}/templates/list_layout'
+
+    Views

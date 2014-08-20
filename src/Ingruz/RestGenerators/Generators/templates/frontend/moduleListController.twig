@@ -1,0 +1,7 @@
+define (require) ->
+    App = require 'app'
+    Views = require 'modules/{{ className }}/{{ className }}_views'
+    require 'entities/{{ className }}'
+
+    class {{ className }}ListController extends App.Base.Controllers.List
+        Views: Views

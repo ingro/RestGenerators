@@ -1,0 +1,12 @@
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th id="id" class="sort">ID</th>
+        {% for field in fields|keys %}
+            <th id="{{ field }}" class="sort">{{ field|capitalize }}</th>
+        {% endfor %}
+        <th>Operazioni</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>

@@ -1,0 +1,10 @@
+{% verbatim %}
+    {% import "base/templates/macros" as helpers %}
+    <td>{{ id }}</td>
+{% endverbatim %}
+    {% for field in fields|keys %}
+        <td>{% verbatim %}{{ {% endverbatim %}{{ field }}{% verbatim %} }}{% endverbatim %}</td>
+    {% endfor %}
+{% verbatim %}
+    <td>{{ helpers.grid_edit_button() }}</td>
+{% endverbatim %}

@@ -1,0 +1,36 @@
+define (require) ->
+    App = require 'app'
+
+    {{ className | capitalize }} = {}
+
+    class {{ className | capitalize }}.Model extends App.Base.Model
+        urlRoot: "#{apiRoutePrefix}/{{ className }}"
+
+    class {{ className | capitalize }}.Collection extends App.Base.Collection
+        model: {{ className | capitalize }}.Model
+        url: "#{apiRoutePrefix}/{{ className }}"
+
+    API =
+        getItems: ->
+            items = new {{ className | capitalize }}.Collection
+            items.fetch
+                reset: true
+            items
+        getModel: (id)->
+            item = new {{ className | capitalize }}.Model
+            item.set "id", parseInt id
+            item.fetch()
+            item
+        getEmptyModel: ->
+            new {{ className | capitalize }}.Model
+
+    App.reqres.setHandler "{{ className }}:models", ->
+        API.getItems()
+
+    App.reqres.setHandler "{{ className }}:model", (id)->
+        API.getModel(id)
+
+    App.reqres.setHandler "{{ className }}:get:empty:model", ->
+        API.getEmptyModel()
+
+    {{ className | capitalize }}

@@ -1,0 +1,6 @@
+{% verbatim %}
+    {% import "base/templates/macros" as helpers %}
+{% endverbatim %}
+{% for field, type in fields %}
+    {% verbatim %}{{ {% endverbatim %}helpers.form_field('{{ field }}', {{ field }} {% if type == 'text' %}, type='textarea'{% endif %}) }}
+{% endfor %}

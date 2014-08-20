@@ -1,0 +1,21 @@
+define (require) ->
+    App = require 'app'
+    ListController = require 'modules/{{ className }}/list/list_controller'
+    EditController = require 'modules/{{ className }}/edit/edit_controller'
+
+    class Module extends App.Base.Module.Grid
+
+        @ListController: ListController
+        @EditController: EditController
+        code: "{{ className }}"
+
+        Api:
+            listItems: =>
+                new @ListController
+                    code: @::code
+            editItem: (item) =>
+                new @EditController
+                    code: @::code
+                    item: item
+
+        Module
